@@ -5,12 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>記事詳細 | Saas企業で働くビジネスマン</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
-        .post-content { line-height: 1.8; margin-top: 30px; }
-        .post-content img { max-width: 100%; height: auto; } /* 画像が出てきても大丈夫なように */
+   <style>
+        /* 全体のレイアウト */
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif; color: #333; }
+        
+        /* ヘッダー周り */
+        #post-header { border-bottom: 2px solid #f0f0f0; padding-bottom: 20px; margin-bottom: 30px; }
+        #post-title { font-size: 2rem; line-height: 1.4; margin: 10px 0; }
         .post-date { color: #888; font-size: 0.9em; }
-        .back-link { margin-top: 50px; display: block; text-decoration: none; color: #007bff; }
+        
+        /* 本文内の装飾（ここがポイント！） */
+        .post-content { line-height: 1.9; font-size: 1.1rem; }
+        .post-content img { max-width: 100%; height: auto; border-radius: 8px; margin: 20px 0; }
+        
+        /* H2見出し：左に太い青線（SaaSサイトによくあるデザイン） */
+        .post-content h2 { 
+            border-left: 5px solid #007bff; 
+            padding: 5px 15px; 
+            background: #f8f9fa; 
+            margin: 40px 0 20px; 
+            font-size: 1.5rem;
+        }
+
+        /* H3見出し：下線のみですっきりと */
+        .post-content h3 { 
+            border-bottom: 2px solid #e9ecef; 
+            padding-bottom: 5px; 
+            margin: 30px 0 15px; 
+            font-size: 1.3rem;
+        }
+
+        /* 段落間の余白 */
+        .post-content p { margin-bottom: 1.5rem; }
+
+        /* 戻るボタン */
+        .back-link { margin-top: 60px; display: inline-block; text-decoration: none; color: #007bff; font-weight: bold; }
+        .back-link:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
