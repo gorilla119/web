@@ -65,18 +65,19 @@
             }
         }
 
-        function displayPosts(posts) {
-            const listElement = document.getElementById('news-list');
-            listElement.innerHTML = posts.map(post => {
-                const date = new Date(post.publishedAt || post.createdAt).toLocaleDateString();
-                return `
-                    <div class="post-item">
-                        <span class="post-date">${date}</span>
-                        <span class="post-title">${post.title}</span>
-                    </div>
-                `;
-            }).join('');
-        }
+function displayPosts(posts) {
+    const listElement = document.getElementById('news-list');
+    listElement.innerHTML = posts.map(post => {
+        const date = new Date(post.publishedAt || post.createdAt).toLocaleDateString();
+        // ★ここを書き換え：aタグで囲み、URLに ?id=... を付ける
+        return `
+            <a href="../post.html?id=${post.id}" class="post-item">
+                <span class="post-date">${date}</span>
+                <span class="post-title">${post.title}</span>
+            </a>
+        `;
+    }).join('');
+}
         fetchPosts();
     </script>
 </body>
