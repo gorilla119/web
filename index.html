@@ -73,7 +73,7 @@
         async function fetchPosts() {
             try {
                 const response = await fetch(
-                    `https://${SERVICE_DOMAIN}.microcms.io/api/v1/${ENDPOINT}`,
+                    `https://${SERVICE_DOMAIN}.microcms.io/api/v1/${ENDPOINT}?limit=5`,
                     {
                         headers: { 'X-MICROCMS-API-KEY': API_KEY }
                     }
@@ -90,26 +90,27 @@
                 document.getElementById('news-list').innerHTML = '記事の取得に失敗しました。';
             }
         }
-
         function displayPosts(posts) {
-            const listElement = document.getElementById('news-list');
-            if (!posts || posts.length === 0) {
-                listElement.innerHTML = '<p>記事がまだありません。</p>';
-                return;
-            }
-
-            listElement.innerHTML = posts.map(post => {
-                const date = new Date(post.publishedAt || post.createdAt).toLocaleDateString();
-                return `
-                    <div class="post-item">
-                        <span class="post-date">${date}</span>
-                        <span class="post-title">${post.title}</span>
-                    </div>
-                `;
-            }).join('');
-        }
+                    const listElement = document.getElementById('news-list');
+                    if (!posts || posts.length === 0) {
+                        listElement.innerHTML = '<p>記事がまだありません。</p>';
+                        return;
+                    }
+        
+                    listElement.innerHTML = posts.map(post => {
+                        const date = new Date(post.publishedAt || post.createdAt).toLocaleDateString();
+                        // 修正ポイント：divをaタグに変更し、hrefを設定しました
+                        return `
+                            <a href="post.html?id=${post.id}" class="post-item">
+                                <span class="post-date">${date}</span>
+                                <span class="post-title">${post.title}</span>
+                            </a>
+                        `;
+                    }).join('');
+                }
 
         fetchPosts();
     </script>
 </body>
 </html>
+
