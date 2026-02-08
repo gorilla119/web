@@ -43,15 +43,17 @@
         const ENDPOINT = 'blog';
         const CATEGORY_NAME = 'business'; // ←ここを各カテゴリ名（book, other）に変えるだけ！
 
-        async function fetchPosts() {
+                async function fetchPosts() {
             try {
-                // filtersパラメータを使って、このカテゴリの記事だけをリクエストします
                 const response = await fetch(
                     `https://${SERVICE_DOMAIN}.microcms.io/api/v1/${ENDPOINT}?filters=category[equals]${CATEGORY_NAME}`,
-                    {
-                        headers: { 'X-MICROCMS-API-KEY': API_KEY }
-                    }
+                    { headers: { 'X-MICROCMS-API-KEY': API_KEY } }
                 );
+                const data = await response.json();
+                console.log("取得したデータ:", data); // ★これを追加
+                displayPosts(data.contents);
+            } catch (error) { ... }
+        }
                 
                 if (!response.ok) throw new Error('取得に失敗しました');
                 const data = await response.json();
