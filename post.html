@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>記事詳細 | Saas企業で働くビジネスマン</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .post-content { line-height: 1.8; margin-top: 30px; }
+        .post-content img { max-width: 100%; height: auto; } /* 画像が出てきても大丈夫なように */
+        .post-date { color: #888; font-size: 0.9em; }
+        .back-link { margin-top: 50px; display: block; text-decoration: none; color: #007bff; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="post-header">
+            <p id="post-date" class="post-date"></p>
+            <h1 id="post-title">読み込み中...</h1>
+        </div>
+        
+        <div id="post-content" class="post-content">
+            </div>
+
+        <a href="index.html" class="back-link">← 記事一覧に戻る</a>
+    </div>
+
+    <script>
+        // URLから「どの記事を表示するか」というIDを取得します
+        const urlParams = new URLSearchParams(window.location.search);
+        const postId = urlParams.get('id');
+
+        const API_KEY = 'd0eHunC1JvEfbA8TZ0ZQqBRPLwxKhZDOdQRD';
+        const SERVICE_DOMAIN = 'olmvd2mpzz';
+        const ENDPOINT = 'blog';
+
+        async function fetchPostDetail() {
+            if (!postId) {
+                document.getElementById('post-title').innerText = '記事が見つかりません';
+                return;
+            }
+
+            try {
+                const response = await fetch(
+                    `https://${SERVICE_DOMAIN}.microcms.io/api/v1/${ENDPOINT}/${postId}`,
+                    { headers: { 'X-MICROCMS-API-KEY': API_KEY } }
+                );
+
+                if (!response.ok) throw new Error('取得失敗');
+
+                const data = await response.json();
+
+                // 画面に反映
+                document.title = `${data.title} | Saas企業で働くビジネスマン`;
+                document.getElementById('post-title').innerText = data.title;
+                document.getElementById('post-date').innerText = new Date(data.publishedAt || data.createdAt).toLocaleDateString();
+                document.getElementById('post-content').innerHTML = data.contents;
+
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('post-title').innerText = '記事の読み込みに失敗しました';
+            }
+        }
+
+        fetchPostDetail();
+    </script>
+</body>
+</html>
