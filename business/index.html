@@ -1,32 +1,44 @@
 <!DOCTYPE html>
-
 <html lang="ja">
-
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-TZG8PD32');</script>
-<!-- End Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TZG8PD32');</script>
     <meta charset="UTF-8">
-
-    <title>カテゴリー名 | Saas企業で働くビジネスマン</title>
-
-    <link rel="stylesheet" href="../style.css"> </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business | Saas企業で働くビジネスマン</title>
+    <link rel="stylesheet" href="../style.css">
+    
+    <style>
+        /* 記事一覧を綺麗に見せるための簡単なスタイル */
+        #news-list { margin: 20px 0; }
+        .post-item { 
+            padding: 15px; 
+            border-bottom: 1px solid #eee; 
+            display: block; 
+            text-decoration: none;
+            color: #333;
+        }
+        .post-item:hover { background-color: #f9f9f9; }
+        .post-date { font-size: 0.8em; color: #888; }
+        .post-title { font-weight: bold; margin-left: 10px; }
+    </style>
+</head>
 
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TZG8PD32"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-    <h1>ここは「カテゴリー名」のページです</h1>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TZG8PD32"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <h1>ここは「Business」のページです</h1>
+    <p>営業・マーケティングの現場で感じたこと、仕事術などを発信します。</p>
 
-    <p>これから記事を増やしていきます。</p>
+    <div id="news-list">記事を読み込み中...</div>
 
     <a href="../index.html">トップページに戻る</a>
 
-</body>
-
-</html>
+    <script>
+        const API_KEY = 'd0eHunC1JvEfbA8TZ0ZQqBRPLwxKhZDOdQRD';
+        const SERVICE_DOMAIN = 'olmvd2mpzz';
+        const ENDPOINT = 'blog';
+        const CATEGORY_NAME = 'business
