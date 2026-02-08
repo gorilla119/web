@@ -76,20 +76,19 @@
         }
 
         // データを画面に表示する関数
-        function displayPosts(posts) {
-            const listElement = document.getElementById('news-list');
-            const html = posts.map(post => {
-                const date = new Date(post.publishedAt || post.createdAt).toLocaleDateString();
-                return `
-                    <div class="post-item">
-                        <span class="post-date">${date}</span>
-                        <span class="post-title">${post.title}</span>
-                    </div>
-                `;
-            }).join('');
-            
-            listElement.innerHTML = html;
-        }
+function displayPosts(posts) {
+    const listElement = document.getElementById('news-list');
+    listElement.innerHTML = posts.map(post => {
+        const date = new Date(post.publishedAt || post.createdAt).toLocaleDateString();
+        // ★ここを書き換え：aタグで囲み、URLに ?id=... を付ける
+        return `
+            <a href="../post.html?id=${post.id}" class="post-item">
+                <span class="post-date">${date}</span>
+                <span class="post-title">${post.title}</span>
+            </a>
+        `;
+    }).join('');
+}
 
         // 実行
         fetchPosts();
