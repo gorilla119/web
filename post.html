@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TZG8PD32');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>記事詳細 | Saas企業で働くビジネスマン</title>
     <link rel="stylesheet" href="style.css">
-   <style>
+    <style>
         /* 全体のレイアウト */
         .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif; color: #333; }
         
@@ -14,11 +19,10 @@
         #post-title { font-size: 2rem; line-height: 1.4; margin: 10px 0; }
         .post-date { color: #888; font-size: 0.9em; }
         
-        /* 本文内の装飾（ここがポイント！） */
+        /* 本文内の装飾 */
         .post-content { line-height: 1.9; font-size: 1.1rem; }
         .post-content img { max-width: 100%; height: auto; border-radius: 8px; margin: 20px 0; }
         
-        /* H2見出し：左に太い青線（SaaSサイトによくあるデザイン） */
         .post-content h2 { 
             border-left: 5px solid #007bff; 
             padding: 5px 15px; 
@@ -27,7 +31,6 @@
             font-size: 1.5rem;
         }
 
-        /* H3見出し：下線のみですっきりと */
         .post-content h3 { 
             border-bottom: 2px solid #e9ecef; 
             padding-bottom: 5px; 
@@ -35,15 +38,15 @@
             font-size: 1.3rem;
         }
 
-        /* 段落間の余白 */
         .post-content p { margin-bottom: 1.5rem; }
 
-        /* 戻るボタン */
         .back-link { margin-top: 60px; display: inline-block; text-decoration: none; color: #007bff; font-weight: bold; }
         .back-link:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TZG8PD32"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="container">
         <div id="post-header">
             <p id="post-date" class="post-date"></p>
@@ -57,7 +60,6 @@
     </div>
 
     <script>
-        // URLから「どの記事を表示するか」というIDを取得します
         const urlParams = new URLSearchParams(window.location.search);
         const postId = urlParams.get('id');
 
@@ -81,7 +83,6 @@
 
                 const data = await response.json();
 
-                // 画面に反映
                 document.title = `${data.title} | Saas企業で働くビジネスマン`;
                 document.getElementById('post-title').innerText = data.title;
                 document.getElementById('post-date').innerText = new Date(data.publishedAt || data.createdAt).toLocaleDateString();
