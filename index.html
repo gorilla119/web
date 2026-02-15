@@ -90,27 +90,29 @@
                 document.getElementById('news-list').innerHTML = '記事の取得に失敗しました。';
             }
         }
-        function displayPosts(posts) {
-                    const listElement = document.getElementById('news-list');
-                    if (!posts || posts.length === 0) {
-                        listElement.innerHTML = '<p>記事がまだありません。</p>';
-                        return;
-                    }
+                function displayPosts(posts) {
+            const listElement = document.getElementById('news-list');
+            listElement.innerHTML = posts.map(post => {
+                const date = new Date(post.publishedAt || post.createdAt).toLocaleDateString();
+                
+                // 画像がある場合はそのURL、ない場合はダミー画像を表示する
+                const imageUrl = post.thumbnail ? post.thumbnail.url + '?w=200' : 'https://placehold.jp/200x150.png?text=No+Image';
         
-                    listElement.innerHTML = posts.map(post => {
-                        const date = new Date(post.publishedAt || post.createdAt).toLocaleDateString();
-                        // 修正ポイント：divをaタグに変更し、hrefを設定しました
-                        return `
-                            <a href="post.html?id=${post.id}" class="post-item">
-                                <span class="post-date">${date}</span>
-                                <span class="post-title">${post.title}</span>
-                            </a>
-                        `;
-                    }).join('');
-                }
+                return `
+                    <a href="post.html?id=${post.id}" class="post-item" style="display: flex; align-items: center; gap: 15px;">
+                        <img src="${imageUrl}" alt="" style="width: 100px; height: 75px; object-fit: cover; border-radius: 4px;">
+                        <div>
+                            <span class="post-date">${date}</span><br>
+                            <span class="post-title" style="margin-left: 0;">${post.title}</span>
+                        </div>
+                    </a>
+                `;
+            }).join('');
+        }
 
         fetchPosts();
     </script>
 </body>
 </html>
+
 
