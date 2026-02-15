@@ -73,7 +73,7 @@
                 return;
             }
 
-           try {
+          try {
                 const response = await fetch(
                     `https://${SERVICE_DOMAIN}.microcms.io/api/v1/${ENDPOINT}/${postId}`,
                     { headers: { 'X-MICROCMS-API-KEY': API_KEY } }
@@ -88,16 +88,16 @@
                 document.getElementById('post-title').innerText = data.title;
                 document.getElementById('post-date').innerText = new Date(data.publishedAt || data.createdAt).toLocaleDateString();
 
-                // ★ここにサムネイル表示のコードを追加！
-                // microCMSで設定したフィールドIDが "thumbnail" の場合
+                // ★ここにサムネイル表示のコードを追加！（タイトルの上に表示）
                 if (data.thumbnail && data.thumbnail.url) {
                     const imgHtml = `
-                        <div style="margin-bottom: 30px; text-align: center;">
+                        <div style="margin-bottom: 20px; text-align: center;">
                             <img src="${data.thumbnail.url}" alt="${data.title}" 
-                                 style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                                 style="width: 100%; max-width: 100%; height: auto; border-radius: 12px; display: block; margin: 0 auto;">
                         </div>`;
-                    // タイトルと日付の入ったヘッダーのすぐ下に画像を挿入
-                    document.getElementById('post-header').insertAdjacentHTML('afterend', imgHtml);
+                    
+                    // 「post-header」という枠の中の、一番最初（タイトルの上）に挿入する
+                    document.getElementById('post-header').insertAdjacentHTML('afterbegin', imgHtml);
                 }
 
                 // 2. 本文の反映
